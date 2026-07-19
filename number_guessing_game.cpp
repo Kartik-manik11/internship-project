@@ -1,4 +1,14 @@
-
+/*******************************************************************************
+*
+* Program: Number Guessing Game
+* 
+* Description: Example of a number guessing game in C++.
+*
+* YouTube Lesson: https://www.youtube.com/watch?v=HTv-TgYaXI8 
+*
+* Author: Kevin Browne @ https://portfoliocourses.com
+*
+*******************************************************************************/
 
 #include <iostream>
 #include <cstdlib>
