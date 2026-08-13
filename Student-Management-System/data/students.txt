@@ -1,0 +1,2 @@
+1001|Aarav Sharma|B.Tech CSE|3|aarav@example.com|84.5
+1002|Meera Kapoor|B.Tech CSE|3|meera@example.com|91.0
