@@ -1,0 +1,362 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0\fswiss Helvetica;}}
+\f0\fs20
+Tic-Tac-Toe: Line-by-line explanation of tictactoe.cpp\par
+File: /Users/kartik/Documents/internship project/tictactoe.cpp\par
+\par
+1. #include <iostream>\par
+- Includes the iostream header so the program can perform input and output (cin, cout).\par
+\par
+2.\par
+- Blank line for readability.\par
+\par
+3. using namespace std;\par
+- Brings all names from the std namespace into global scope, so code can use cout, cin, etc., without the std:: prefix.\par
+\par
+4.\par
+- Blank line for readability.\par
+\par
+5. char board[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};\par
+- Declares and initializes a 3x3 char array named board representing the tic-tac-toe grid. Each cell initially contains a character '1'..'9' indicating the slot number.\par
+\par
+6. char current_marker;\par
+- Declares a char variable current_marker that will hold the marker for the active player ('X' or 'O').\par
+\par
+7. int current_player;\par
+- Declares an int variable current_player to track which player's turn it is (1 or 2).\par
+\par
+8.\par
+- Blank line for readability.\par
+\par
+9. void drawBoard() {\par
+- Starts the definition of drawBoard(), a function that prints the current board to the console.\par
+\par
+10.     cout << "\n";\par
+- Prints a blank line for spacing before the board.\par
+\par
+11.     cout << " " << board[0][0] << " | " << board[0][1] << " | " << board[0][2] << " \n";\par
+- Prints the first row of the board with separators (e.g., " 1 | 2 | 3 ").\par
+\par
+12.     cout << "---|---|---\n";\par
+- Prints the horizontal separator line beneath the first row.\par
+\par
+13.     cout << " " << board[1][0] << " | " << board[1][1] << " | " << board[1][2] << " \n";\par
+- Prints the second row of the board.\par
+\par
+14.     cout << "---|---|---\n";\par
+- Prints the horizontal separator line beneath the second row.\par
+\par
+15.     cout << " " << board[2][0] << " | " << board[2][1] << " | " << board[2][2] << " \n";\par
+- Prints the third row of the board.\par
+\par
+16.     cout << "\n";\par
+- Prints another blank line after the board for spacing.\par
+\par
+17. }\par
+- Ends the drawBoard() function.\par
+\par
+18.\par
+- Blank line for readability.\par
+\par
+19. bool placeMarker(int slot) {\par
+- Starts the definition of placeMarker(), which attempts to place current_marker into the chosen slot (1–9). Returns true on success, false if the slot is occupied.\par
+\par
+20.     int row = (slot - 1) / 3;\par
+- Converts the slot number to a 0-based row index. Integer division maps slots 1..3 → row 0, 4..6 → row 1, 7..9 → row 2.\par
+\par
+21.     int col = (slot - 1) % 3;\par
+- Converts the slot number to a 0-based column index using modulo. slot 1 → col 0, slot 2 → col 1, etc.\par
+\par
+22.\par
+- Blank line for readability.\par
+\par
+23.     if (board[row][col] != 'X' && board[row][col] != 'O') {\par
+- Checks whether the target cell is not already occupied by an 'X' or 'O' (i.e., still contains its slot number).\par
+\par
+24.         board[row][col] = current_marker;\par
+- If free, sets the board cell to the current player's marker.\par
+\par
+25.         return true;\par
+- Returns true to indicate the marker was placed successfully.\par
+\par
+26.     }\par
+- End of the if block.\par
+\par
+27.     return false;\par
+- If the cell was already occupied, returns false to indicate placement failed.\par
+\par
+28. }\par
+- Ends the placeMarker() function.\par
+\par
+29.\par
+- Blank line for readability.\par
+\par
+30. int checkWinner() {\par
+- Starts the definition of checkWinner(), which checks the board for a winning condition and returns the number of the player who won (current_player) or 0 if no winner yet.\par
+\par
+31.     for (int i = 0; i < 3; i++) {\par
+- Loop to check each row.\par
+\par
+32.         if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) {\par
+- If all three cells in row i are equal (all X or all O), a win on that row is detected.\par
+\par
+33.             return current_player;\par
+- Returns the current_player (the one who placed the most recent marker) as the winner.\par
+\par
+34.         }\par
+- End of the if within the row-check loop.\par
+\par
+35.     }\par
+- End of the row-check loop.\par
+\par
+36.     \par
+- Blank line for readability.\par
+\par
+37.     for (int i = 0; i < 3; i++) {\par
+- Loop to check each column.\par
+\par
+38.         if (board[0][i] == board[1][i] && board[1][i] == board[2][i]) {\par
+- If all three cells in column i are equal, a column win is detected.\par
+\par
+39.             return current_player;\par
+- Returns the current_player as the winner.\par
+\par
+40.         }\par
+- End of the if within the column-check loop.\par
+\par
+41.     }\par
+- End of the column-check loop.\par
+\par
+42.     \par
+- Blank line for readability.\par
+\par
+43.     if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {\par
+- Checks the main diagonal (top-left to bottom-right) for three identical markers.\par
+\par
+44.         return current_player;\par
+- Returns current_player if the main diagonal is a win.\par
+\par
+45.     }\par
+- End of the main-diagonal check.\par
+\par
+46.     if (board[0][2] == board[1][1] && board[1][1] == board[2][0]) {\par
+- Checks the anti-diagonal (top-right to bottom-left) for three identical markers.\par
+\par
+47.         return current_player;\par
+- Returns current_player if the anti-diagonal is a win.\par
+\par
+48.     }\par
+- End of the anti-diagonal check.\par
+\par
+49.\par
+- Blank line for readability.\par
+\par
+50.     return 0; \par
+- If no winning condition was found, returns 0 to indicate no winner yet.\par
+\par
+51. }\par
+- Ends the checkWinner() function.\par
+\par
+52.\par
+- Blank line for readability.\par
+\par
+53. void swapPlayerAndMarker() {\par
+- Starts the definition of swapPlayerAndMarker(), which toggles both the current_marker and current_player to the other player.\par
+\par
+54.     if (current_marker == 'X') {\par
+- If current_marker is 'X'...\par
+\par
+55.         current_marker = 'O';\par
+- ...switch it to 'O'.\par
+\par
+56.     } else {\par
+- Otherwise (current_marker is not 'X')...\par
+\par
+57.         current_marker = 'X';\par
+- ...switch it to 'X'.\par
+\par
+58.     }\par
+- End of the marker switch if-else.\par
+\par
+59.\par
+- Blank line for readability.\par
+\par
+60.     if (current_player == 1) {\par
+- If current_player is 1...\par
+\par
+61.         current_player = 2;\par
+- ...switch to player 2.\par
+\par
+62.     } else {\par
+- Otherwise (current_player is not 1)...\par
+\par
+63.         current_player = 1;\par
+- ...switch to player 1.\par
+\par
+64.     }\par
+- End of the player switch if-else.\par
+\par
+65. }\par
+- Ends the swapPlayerAndMarker() function.\par
+\par
+66.\par
+- Blank line for readability.\par
+\par
+67. int main() {\par
+- Program entry point.\par
+\par
+68.     cout << "Player 1, choose your marker (X or O): ";\par
+- Prompts Player 1 to choose a marker.\par
+\par
+69.     char marker_p1;\par
+- Declares marker_p1 to store Player 1's chosen marker.\par
+\par
+70.     cin >> marker_p1;\par
+- Reads Player 1's input from standard input.\par
+\par
+71.\par
+- Blank line for readability.\par
+\par
+72.     current_player = 1;\par
+- Sets current_player to 1, so Player 1 goes first.\par
+\par
+73.     current_marker = marker_p1;\par
+- Sets current_marker to the marker chosen by Player 1. (Note: program does not validate input here.)\par
+\par
+74.\par
+- Blank line for readability.\par
+\par
+75.     drawBoard();\par
+- Calls drawBoard() to show the initial board with slot numbers.\par
+\par
+76.\par
+- Blank line for readability.\par
+\par
+77.     int player_won = 0;\par
+- Declares and initializes player_won to 0; will hold the winning player's number if someone wins.\par
+\par
+78.\par
+- Blank line for readability.\par
+\par
+79.     for (int i = 0; i < 9; i++) {\par
+- Starts a loop for up to 9 moves (maximum possible moves in tic-tac-toe).\par
+\par
+80.         cout << "It's player " << current_player << "'s turn. Enter your slot (1-9): ";\par
+- Prompts the current player to enter a slot number.\par
+\par
+81.         int slot;\par
+- Declares slot to store the player's chosen slot.\par
+\par
+82.         cin >> slot;\par
+- Reads the chosen slot from standard input.\par
+\par
+83.\par
+- Blank line for readability.\par
+\par
+84.         if (slot < 1 || slot > 9) {\par
+- Validates the entered slot is within 1..9.\par
+\par
+85.             cout << "Invalid slot! Please try again.\n";\par
+- If invalid, prints an error message.\par
+\par
+86.             i--; \par
+- Decrements the loop counter i so this iteration doesn't count as a move (allow retry).\par
+\par
+87.             continue;\par
+- Skips to the next iteration of the loop to prompt again.\par
+\par
+88.         }\par
+- End of invalid-slot check.\par
+\par
+89.\par
+- Blank line for readability.\par
+\par
+90.         if (!placeMarker(slot)) {\par
+- Attempts to place the marker; if placeMarker returns false, the slot was already occupied.\par
+\par
+91.             cout << "That slot is already occupied! Please try again.\n";\par
+- Prints a message informing the player the slot is taken.\par
+\par
+92.             i--; \par
+- Decrements i so the invalid attempt doesn't count as a move.\par
+\par
+93.             continue;\par
+- Skips to the next iteration to prompt again.\par
+\par
+94.         }\par
+- End of occupied-slot handling.\par
+\par
+95.\par
+- Blank line for readability.\par
+\par
+96.         drawBoard();\par
+- Draws the board after a successful placement to show the updated state.\par
+\par
+97.         player_won = checkWinner();\par
+- Calls checkWinner() to see if the current move created a win and stores the result.\par
+\par
+98.\par
+- Blank line for readability.\par
+\par
+99.         if (player_won == 1) {\par
+- If player_won indicates player 1 won...\par
+\par
+100.             cout << "Player 1 won! Congratulations!\n";\par
+- ...announce Player 1's victory.\par
+\par
+101.             break;\par
+- Break out of the move loop because the game is over.\par
+\par
+102.         } else if (player_won == 2) {\par
+- Else if player 2 won...\par
+\par
+103.             cout << "Player 2 won! Congratulations!\n";\par
+- ...announce Player 2's victory.\par
+\par
+104.             break;\par
+- Break out of the move loop.\par
+\par
+105.         }\par
+- End of win-announcement conditional.\par
+\par
+106.\par
+- Blank line for readability.\par
+\par
+107.         swapPlayerAndMarker();\par
+- Swap to the other player and their marker for the next turn.\par
+\par
+108.     }\par
+- End of the for loop of up to 9 moves.\par
+\par
+109.\par
+- Blank line for readability.\par
+\par
+110.     if (player_won == 0) {\par
+- After the loop, if player_won is still 0, no player won.\par
+\par
+111.         cout << "It's a tie game!\n";\par
+- Announces the game is a tie (draw).\par
+\par
+112.     }\par
+- End of tie check.\par
+\par
+113.\par
+- Blank line for readability.\par
+\par
+114.     return 0;\par
+- Returns 0 from main, indicating the program finished successfully.\par
+\par
+115. }\par
+- End of main() and the program.\par
+\par
+Notes and small observations:\par
+- Input validation is minimal: the program accepts any character for the initial marker selection (line 70) and does not convert lowercase to uppercase or check validity (could be improved).\par
+- checkWinner() returns current_player when it finds a three-in-a-row; this relies on the assumption that checkWinner() is called immediately after a move by the player to be considered the winner (which is true in this code).\par
+- The program uses i-- and continue to allow the same player to retry after invalid input or choosing an occupied slot.\par
+- The board stores characters '1'..'9' initially; after markers are placed, those are replaced by 'X' or 'O'.\par
+\par
+If you'd like, next steps can be:\par
+- Add validation to ensure the initial marker is 'X' or 'O' (and handle lower-case input).\par
+- Prevent players from choosing the same marker twice or automatically assign the opposite marker to the other player.\par
+- Refactor to separate input handling from game logic for better testing.\par
+\par
