@@ -1,0 +1,117 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0\fswiss Helvetica;}}
+\fs20
+Number Guessing Game - Line-by-line explanation\par
+\par
+1. /*******************************************************************************\par
+   Comment block start: begins a multi-line comment header describing the program.\par
+2. *\par
+   Continued comment line (visual separator).\par
+3. * Program: Number Guessing Game\par
+   States the program name.\par
+4. * \par
+   Blank comment line for spacing.\par
+5. * Description: Example of a number guessing game in C++.\par
+   Describes what the program demonstrates.\par
+6. *\par
+   Blank/comment spacing.\par
+7. * YouTube Lesson: https://www.youtube.com/watch?v=HTv-TgYaXI8 \par
+   Reference URL in the comment for the lesson.\par
+8. *\par
+9. * Author: Kevin Browne @ https://portfoliocourses.com\par
+   Author attribution.\par
+10. *\par
+11. *******************************************************************************/\par
+   End of the multi-line comment block.\par
+\par
+12. \par
+   Blank line separating comment from includes.\par
+13. #include <iostream>\par
+   Preprocessor directive to include the iostream header for input/output streams (cout, cin, etc.).\par
+14. #include <cstdlib>\par
+   Includes the C standard library header for functions like rand() and srand().\par
+15. #include <ctime>\par
+   Includes the C time header for time() which is used to seed the random number generator.\par
+\par
+16. \par
+   Blank line.\par
+17. using namespace std;\par
+   Brings all names from the std namespace into the global namespace so std:: prefix is not required.\par
+\par
+18. \par
+   Blank line.\par
+19. int main()\par
+   The program's entry point. main() returns an int status code to the operating system.\par
+20. \{\par
+   Start of the main function body. (Opening brace.)\par
+21.   // Seed the random number generator with the current time as returned by \par
+   Comment explaining the purpose of the next statement: seeding the RNG.\par
+22.   // time() when it is passed NULL, in order to ensure a different random \par
+   Continued comment. Explains that time(NULL) provides a varying seed.\par
+23.   // number seed each time the program is executed.\par
+   Continued comment.\par
+24.   srand((unsigned int) time(NULL));\par
+   Calls srand() with the current time cast to unsigned int to initialize the pseudo-random number generator. This helps produce different sequences of random numbers on each run.\par
+25.   \par
+   Blank line.\par
+26.   // Generate a random number between 1-100, store it into the number variable.\par
+   Comment describing generating the target number.\par
+27.   // rand() will return a random int value between 0 and a large number, mod 100\par
+   Comment explaining how modulus is used to constrain the range.\par
+28.   // will turn that number into a 0-99 range, and +1 shifts that range to 1-100!\par
+   Continued comment clarifying the +1 shift.\par
+29.   int number = (rand() % 100) + 1; \par
+   Generates a pseudo-random integer in the range 1..100 and stores it in the variable 'number': rand() % 100 yields 0..99, adding 1 gives 1..100.\par
+30.   \par
+   Blank line.\par
+31.   // Stores the guess the user enters\par
+   Comment describing the next variable.\par
+32.   int guess = 0;\par
+   Declares and initializes 'guess' to 0; this will hold the player's current guess.\par
+33.   \par
+   Blank line.\par
+34.   do\par
+   Begins a do-while loop that executes the loop body at least once and repeats until the guess equals the number.\par
+35.   \{\par
+   Opening brace for the do-while loop body.\par
+36.     // Prompt the user to enter the guess, store it into guess\par
+   Comment explaining next I/O operations.\par
+37.     cout << "Enter Guess (1-100): ";\par
+   Outputs a prompt to standard output asking the user for a guess.\par
+38.     cin >> guess;\par
+   Reads an integer from standard input and stores it in 'guess'.\par
+39.     \par
+   Blank line.\par
+40.     // Tell the user to guess higher or lower or that they won based on \par
+   Comment explaining conditional feedback to the user.\par
+41.     // comparing the guess to the number.\par
+   Continued comment.\par
+42.     if (guess > number)\par
+   If the player's guess is greater than the target number...\par
+43.       cout << "Guess lower!" << endl;\par
+   ...tell them to guess lower and output a newline.\par
+44.     else if (guess < number)\par
+   Otherwise, if the guess is less than the target...\par
+45.       cout << "Guess higher!" << endl;\par
+   ...tell them to guess higher and output a newline.\par
+46.     else\par
+   Otherwise (the guess is equal to the target)...\par
+47.       cout << "You won!" << endl;\par
+   ...congratulate the player and finish with a newline.\par
+48.       \par
+   Blank line.\par
+49.     // Keep the game going by having the user guess again so long as they did \par
+   Comment reminding that the loop repeats until the correct guess.\par
+50.     // not guess correctly.\par
+   Continued comment.\par
+51.   \} while (guess != number);\par
+   End of the do-while loop: close the loop body and repeat while 'guess' is not equal to 'number'.\par
+52.    \par
+   Blank line.\par
+53.   return 0;\par
+   Return 0 from main to indicate successful program termination to the operating system.\par
+54. \}\par
+   Closing brace of main.\par
+\par
+End of explanation.\par
+}
