@@ -1,3 +1,9 @@
 Category: 0
 Amount: 500
 ------------------
+Category: 4
+Amount: 7800
+------------------
+Category: 0
+Amount: 15000
+------------------
